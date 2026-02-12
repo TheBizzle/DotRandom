@@ -1,0 +1,219 @@
+{-# OPTIONS_GHC -fno-warn-missing-import-lists #-}
+module Dotrandom.Positions(Position(Pos1, Pos2, Pos3, Pos4, Pos5), positions) where
+
+import Dotrandom.Hero(Hero(..))
+
+import qualified Data.Set as Set
+
+
+data Position
+  = Pos1
+  | Pos2
+  | Pos3
+  | Pos4
+  | Pos5
+  deriving (Bounded, Enum, Eq, Show)
+
+positions :: (Set Hero, Set Hero, Set Hero, Set Hero, Set Hero)
+positions = (pos1, pos2, pos3, pos4, pos5)
+  where
+    pos1 =
+      Set.fromList $
+        [ Alchemist
+        , AntiMage
+        , Bloodseeker
+        , Broodmother
+        , ChaosKnight
+        , Clinkz
+        , DragonKnight
+        , Drow
+        , FacelessVoid
+        , Gyrocopter
+        , Juggernaut
+        , Kez
+        , Lifestealer
+        , Luna
+        , Medusa
+        , MonkeyKing
+        , Morphling
+        , Muerta
+        , NagaSiren
+        , NaturesProphet
+        , PhantomAssassin
+        , PhantomLancer
+        , Riki
+        , ShadowFiend
+        , Slark
+        , Sniper
+        , Spectre
+        , Sven
+        , TemplarAssassin
+        , Terrorblade
+        , TrollWarlord
+        , Ursa
+        , Weaver
+        , Windranger
+        , WraithKing
+        ]
+
+    pos2 =
+      Set.fromList $
+        [ ArcWarden
+        , Batrider
+        , Broodmother
+        , DeathProphet
+        , DragonKnight
+        , EarthSpirit
+        , EmberSpirit
+        , Huskar
+        , Invoker
+        , Kunkka
+        , Leshrac
+        , Lina
+        , LoneDruid
+        , Marci
+        , Meepo
+        , MonkeyKing
+        , NaturesProphet
+        , Necrophos
+        , OutworldDestroyer
+        , Pangolier
+        , Puck
+        , Pudge
+        , QueenOfPain
+        , Riki
+        , SandKing
+        , ShadowFiend
+        , SkywrathMage
+        , Sniper
+        , StormSpirit
+        , Timbersaw
+        , Tinker
+        , Tiny
+        , Viper
+        , Visage
+        , VoidSpirit
+        , Zeus
+        ]
+
+    pos3 =
+      Set.fromList $
+        [ Axe
+        , Batrider
+        , Beastmaster
+        , BountyHunter
+        , Brewmaster
+        , Bristleback
+        , Broodmother
+        , CentaurWarrunner
+        , ChaosKnight
+        , DarkSeer
+        , Dawnbreaker
+        , DeathProphet
+        , Doom
+        , DragonKnight
+        , ElderTitan
+        , Enigma
+        , Kunkka
+        , Largo
+        , LegionCommander
+        , Lycan
+        , Magnus
+        , Marci
+        , Mars
+        , Necrophos
+        , NightStalker
+        , Omniknight
+        , Pangolier
+        , Phoenix
+        , PrimalBeast
+        , Pudge
+        , Razor
+        , SandKing
+        , Slardar
+        , Tidehunter
+        , Timbersaw
+        , Underlord
+        , VengefulSpirit
+        , Viper
+        , Visage
+        , Windranger
+        ]
+
+    pos4 =
+      Set.fromList $
+        [ Batrider
+        , BountyHunter
+        , Clockwerk
+        , DarkWillow
+        , EarthSpirit
+        , Earthshaker
+        , ElderTitan
+        , Grimstroke
+        , Hoodwink
+        , Jakiro
+        , KeeperOfTheLight
+        , Lion
+        , Marci
+        , Mirana
+        , NaturesProphet
+        , NyxAssassin
+        , Phoenix
+        , Pudge
+        , Pugna
+        , Ringmaster
+        , Rubick
+        , ShadowDemon
+        , ShadowShaman
+        , SkywrathMage
+        , Snapfire
+        , SpiritBreaker
+        , Techies
+        , Tiny
+        , Tusk
+        , VengefulSpirit
+        , Windranger
+        , WinterWyvern
+        , Zeus
+        ]
+
+    pos5 =
+      Set.fromList $
+        [ Abaddon
+        , AncientApparition
+        , Bane
+        , Chen
+        , Clockwerk
+        , CrystalMaiden
+        , Dazzle
+        , Disruptor
+        , ElderTitan
+        , Enchantress
+        , Grimstroke
+        , Io
+        , Jakiro
+        , KeeperOfTheLight
+        , Largo
+        , Lich
+        , Lion
+        , Mirana
+        , OgreMagi
+        , Oracle
+        , Phoenix
+        , Pudge
+        , Pugna
+        , Ringmaster
+        , Rubick
+        , ShadowDemon
+        , ShadowShaman
+        , Silencer
+        , Snapfire
+        , TreantProtector
+        , Tusk
+        , Undying
+        , VengefulSpirit
+        , Venomancer
+        , Warlock
+        , WinterWyvern
+        , WitchDoctor
+        ]
