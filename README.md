@@ -2,7 +2,7 @@
 
 ## What is it?
 
-A tool for drafting semi-random Dota teams.  It is intended for use with the Open Hyper AI bots, where the output can be entered into the draft lists in the `general.lua` file.
+A tool for drafting semi-random Dota teams.  It is intended for use with [the Open Hyper AI bots](https://github.com/forest0xia/dota2bot-OpenHyperAI), where the output can be entered into the draft lists in the `general.lua` file.
 
 This tool has an internal banlist, whereby heroes with particularly good bots will not be drafted onto the Radiant team, and heroes with particularly bad bots will not be drafted onto *any* team.
 
