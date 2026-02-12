@@ -23,6 +23,11 @@ stack build && stack exec dotrandom
 The assumption is that you're playing on the Radiant side.  The input format is a series of comma-separated entries in format `<position>: <heroName>`.
 
   * `position`: A number, 1 through 5
-  * `heroName`: The player-facing (non-internal) name of the hero, written with only alphabetical characters.  For example: "Shadow Fiend" becomes "ShadowFiend"; "Nature's Prophet" becomes "NaturesProphet"; "Anti-Mage" becomes "AntiMage"; "Clockwerk" becomes "Clockwerk", while "rattletrap" is an error, since that's only his internal name.
+  * `heroName`: The player-facing (non-internal) name of the hero, written with only alphabetical characters.
+    * `Shadow Fiend` should be entered as `ShadowFiend`
+    * `Nature's Prophet` as `NaturesProphet`
+    * `Anti-Mage` as `AntiMage`
+    * `Clockwerk` as `Clockwerk` (while `rattletrap` produces an error, since that's only his internal name)
+    * Etc.
 
 As such, when prompted, enter any heroes reserved for you and your teammates with a format like: `2: ShadowFiend, 5: Hoodwink`.  This will prevent the bots from taking them and from pulling another hero out of the pool to suggest in a slot that will be filled by a human.
