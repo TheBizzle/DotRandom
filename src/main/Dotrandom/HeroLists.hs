@@ -30,10 +30,12 @@ goodHeroes
       , Bristleback
       , Earthshaker
       , EarthSpirit
+      , Huskar
       , Jakiro
       , LegionCommander
       , Lich
       , Lina
+      , Lycan
       , Mars
       , Medusa
       , MonkeyKing
@@ -44,6 +46,7 @@ goodHeroes
       , SandKing
       , ShadowDemon
       , Silencer
+      , SkywrathMage
       , Slardar
       , Tidehunter
       , Venomancer
@@ -63,13 +66,16 @@ badHeroes
       [ AncientApparition
       , AntiMage
       , Batrider
+      , Bloodseeker
       , BountyHunter
       , Broodmother
       , ChaosKnight
       , DarkSeer
+      , Dawnbreaker
       , Dazzle
       , Disruptor
       , DragonKnight
+      , Hoodwink
       , Juggernaut
       , Kez
       , Lion
@@ -122,17 +128,18 @@ tooBadHeroes
       , SpiritBreaker
       , Sven
       , TemplarAssassin
+      , TreantProtector
       , TrollWarlord
       , Underlord
       , VengefulSpirit
       , Visage
+      , WraithKing
       ]
 
 historicBads :: Set Hero
 historicBads
   = Set.fromList $
       [ Doom
-      , Hoodwink
       , Invoker
       , Magnus
       , NagaSiren
@@ -145,28 +152,20 @@ unevaluateds
   = Set.fromList $
       [ Alchemist
       , Bane
-      , Bloodseeker
       , Magnus
       , NightStalker
       , PhantomLancer
       , Puck
-      , SkywrathMage
-      , TreantProtector
       , Undying
-      , WraithKing
 
       , CentaurWarrunner
       , Chen
-      , Dawnbreaker
       , Doom
       , Drow
       , EmberSpirit
-      , Hoodwink
-      , Huskar
       , Invoker
       , Largo
       , Leshrac
-      , Lycan
       , NagaSiren
       , OutworldDestroyer
       , QueenOfPain
