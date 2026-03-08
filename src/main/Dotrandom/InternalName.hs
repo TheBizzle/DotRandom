@@ -5,7 +5,7 @@ import Dotrandom.Hero(Hero(..))
 
 
 toInternalName :: Hero -> Text
-toInternalName = internalName &> ("npc_dota_hero_" <>)
+toInternalName = ("npc_dota_hero_" <>) . internalName
 
 internalName :: Hero -> Text
 internalName Abaddon           = "abaddon"
