@@ -1,18 +1,18 @@
 module Main(main) where
 
-import Data.List((!!))
 import Data.Maybe(fromJust)
 import Data.Text(breakOn, splitOn)
 
 import System.Random(randomRIO)
 
-import Dotrandom.Banlist(tooBadHeroes, tooGoodHeroes)
+import Dotrandom.Banlist(badHeroes, goodHeroes, tooBadHeroes, tooGoodHeroes, unevaluateds)
 import Dotrandom.Hero(Hero)
 import Dotrandom.InternalName(toInternalName)
 import Dotrandom.Positions(Position(Pos1, Pos2, Pos3, Pos4, Pos5), positions)
 import Dotrandom.Team(emptyTeam, heroSet, preHeroSet, PreTeam(pos1M, pos2M, pos3M, pos4M, pos5M, PreTeam), Team(Team))
 
 import qualified Data.List    as List
+import qualified Data.Map     as Map
 import qualified Data.Set     as Set
 import qualified Data.Text    as Text
 import qualified Data.Text.IO as TIO
@@ -25,34 +25,46 @@ main =
     input    <- TIO.getLine
     let team  = parseReserves input
 
-    let allHeroes      = Set.fromList ([minBound..maxBound] :: [Hero])
+    let allHeroes      = [minBound..maxBound] :: [Hero]
+    let fullPool       = Map.fromList $ map (, error "No weight given") allHeroes
     let reservedHeroes = preHeroSet team
-    let cpuPool        = Set.difference allHeroes reservedHeroes
-    let bothPool       = Set.difference cpuPool   tooBadHeroes
+    let weightedPool   = weightPool fullPool [ (     badHeroes, 25)
+                                             , (    goodHeroes, 10)
+                                             , (reservedHeroes,  0)
+                                             , (  tooBadHeroes,  0)
+                                             , ( tooGoodHeroes,  0)
+                                             , (  unevaluateds, 80)
+                                             ]
 
-    mainLoop bothPool team
+    mainLoop weightedPool team
 
-mainLoop :: Set Hero -> PreTeam -> IO ()
-mainLoop bothPool team =
+mainLoop :: Map Hero Word -> PreTeam -> IO ()
+mainLoop weightedPool team =
   do
-    tryDrafting bothPool team
+    tryDrafting weightedPool team
     TIO.putStrLn "\nType 'r' if you want to re-roll the drafts"
     input <- TIO.getLine
     if (Text.toLower $ Text.strip input) == "r" then
-      mainLoop bothPool team
+      mainLoop weightedPool team
     else
       return ()
 
-tryDrafting :: Set Hero -> PreTeam -> IO ()
-tryDrafting bothPool team =
+tryDrafting :: Map Hero Word -> PreTeam -> IO ()
+tryDrafting weightedPool team =
   do
-    let direPool    = bothPool
+    let direPool    = weightedPool
     direTeam       <- draft direPool emptyTeam
     let direHeroes  = heroSet direTeam
 
-    let radiantPool  = Set.difference bothPool    tooGoodHeroes
-    let finalPool    = Set.difference radiantPool direHeroes
-    radiantTeam     <- draft finalPool team
+    let finalPool = weightPool weightedPool [ (    badHeroes, 15)
+                                            , (   goodHeroes, 20)
+                                            , ( tooBadHeroes,  0)
+                                            , (tooGoodHeroes, 20)
+                                            , (   direHeroes,  0)
+                                            , ( unevaluateds, 80)
+                                            ]
+
+    radiantTeam <- draft finalPool team
 
     outputTeams radiantTeam direTeam
 
@@ -82,7 +94,7 @@ updatePos team Pos3 h = team { pos3M = Just h }
 updatePos team Pos4 h = team { pos4M = Just h }
 updatePos team Pos5 h = team { pos5M = Just h }
 
-draft :: Set Hero -> PreTeam -> IO Team
+draft :: Map Hero Word -> PreTeam -> IO Team
 draft pool preteam =
   do
     let posPools  = map toPosPair ([minBound..maxBound] :: [Position])
@@ -99,10 +111,11 @@ draft pool preteam =
       if pos `isFilledIn` pteam then
         return (pteam, currPool)
       else do
-        let finalPool  = Set.intersection currPool posHeroes
+        let notInPool  = Set.difference (Map.keysSet currPool) posHeroes
+        let finalPool  = weightPool currPool [(notInPool, 0)]
         choice        <- randomOneOf finalPool
         let newTeam    = updatePos pteam pos choice
-        let newPool    = Set.delete choice currPool
+        let newPool    = Map.insert choice 0 currPool
         return (newTeam, newPool)
 
 isFilledIn :: Position -> PreTeam -> Bool
@@ -111,6 +124,10 @@ isFilledIn Pos2 (PreTeam _ p _ _ _) = isJust p
 isFilledIn Pos3 (PreTeam _ _ p _ _) = isJust p
 isFilledIn Pos4 (PreTeam _ _ _ p _) = isJust p
 isFilledIn Pos5 (PreTeam _ _ _ _ p) = isJust p
+
+weightPool :: Map Hero Word -> [(Set Hero, Word)] -> Map Hero Word
+weightPool = foldr $ \(set, weight) pool ->
+  Set.foldr (\hero p -> Map.insert hero weight p) pool set
 
 outputTeams :: Team -> Team -> IO ()
 outputTeams radiant dire =
@@ -127,12 +144,13 @@ outputTeam (Team p1 p2 p3 p4 p5) =
     map (\name -> "  '" <> name <> "',") &>
     flip forM_ TIO.putStrLn
 
-randomOneOf :: Set a -> IO a
-randomOneOf s
-  | Set.null s = error "Can't get random elem from set of nothing"
-  | otherwise  =
-    do
-      let items       = Set.toList s
-      let upperBound  = (List.length items) - 1
-      i              <- randomRIO (0, upperBound)
-      return $ items !! i
+randomOneOf :: Map a Word -> IO a
+randomOneOf m =
+  do
+    let weightedPairs  = Map.toList m
+    let total          = sum $ map snd weightedPairs
+    let slottedPairs   = List.scanl1 (\(_, acc) (x, w) -> (x, acc + w)) weightedPairs
+    drawnNum          <- randomRIO (0, total)
+    case find (\(_, c) -> c >= drawnNum) slottedPairs of
+      Just (x, _) -> return x
+      Nothing     -> error "Can't get random elem from map of empty weights"
