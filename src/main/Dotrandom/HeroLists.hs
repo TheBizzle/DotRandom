@@ -161,7 +161,7 @@ unevaluateds
       , CentaurWarrunner
       , Chen
       , Doom
-      , Drow
+      , DrowRanger
       , EmberSpirit
       , Invoker
       , Largo

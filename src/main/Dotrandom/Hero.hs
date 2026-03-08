@@ -32,7 +32,7 @@ data Hero
   | Disruptor
   | Doom
   | DragonKnight
-  | Drow
+  | DrowRanger
   | EarthSpirit
   | Earthshaker
   | ElderTitan

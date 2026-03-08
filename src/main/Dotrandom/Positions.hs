@@ -26,7 +26,7 @@ positions = (pos1, pos2, pos3, pos4, pos5)
         , ChaosKnight
         , Clinkz
         , DragonKnight
-        , Drow
+        , DrowRanger
         , FacelessVoid
         , Gyrocopter
         , Juggernaut
