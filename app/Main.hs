@@ -5,8 +5,8 @@ import Data.Text(breakOn, splitOn)
 
 import System.Random(randomRIO)
 
-import Dotrandom.Banlist(badHeroes, goodHeroes, tooBadHeroes, tooGoodHeroes, unevaluateds)
 import Dotrandom.Hero(Hero)
+import Dotrandom.HeroLists(badHeroes, goodHeroes, tooBadHeroes, tooGoodHeroes, unevaluateds)
 import Dotrandom.InternalName(toInternalName)
 import Dotrandom.Positions(Position(Pos1, Pos2, Pos3, Pos4, Pos5), positions)
 import Dotrandom.Team(emptyTeam, heroSet, preHeroSet, PreTeam(pos1M, pos2M, pos3M, pos4M, pos5M, PreTeam), Team(Team))

@@ -35,8 +35,8 @@ Library
   Import:          common
   Hs-Source-Dirs:  src/main
   Exposed-Modules:
-    Dotrandom.Banlist,
     Dotrandom.Hero,
+    Dotrandom.HeroLists,
     Dotrandom.InternalName,
     Dotrandom.Positions,
     Dotrandom.Team

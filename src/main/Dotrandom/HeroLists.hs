@@ -1,5 +1,5 @@
 {-# OPTIONS_GHC -fno-warn-missing-import-lists #-}
-module Dotrandom.Banlist(badHeroes, goodHeroes, tooBadHeroes, tooGoodHeroes, unevaluateds) where
+module Dotrandom.HeroLists(badHeroes, goodHeroes, tooBadHeroes, tooGoodHeroes, unevaluateds) where
 
 import qualified Data.Set as Set
 
