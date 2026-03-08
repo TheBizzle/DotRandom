@@ -26,7 +26,7 @@ main =
     let team  = parseReserves input
 
     let allHeroes      = [minBound..maxBound] :: [Hero]
-    let fullPool       = Map.fromList $ map (, error "No weight given") allHeroes
+    let fullPool       = Map.fromList $ map (, 1) allHeroes
     let reservedHeroes = preHeroSet team
     let weightedPool   = weightPool fullPool [ (     badHeroes, 25)
                                              , (    goodHeroes, 10)
@@ -127,7 +127,10 @@ isFilledIn Pos5 (PreTeam _ _ _ _ p) = isJust p
 
 weightPool :: Map Hero Word -> [(Set Hero, Word)] -> Map Hero Word
 weightPool = foldr $ \(set, weight) pool ->
-  Set.foldr (\hero p -> Map.insert hero weight p) pool set
+    Set.foldr (\hero p -> Map.alter (updater weight) hero p) pool set
+  where
+    updater      _ (Just 0) = Just 0
+    updater weight        _ = Just weight
 
 outputTeams :: Team -> Team -> IO ()
 outputTeams radiant dire =
