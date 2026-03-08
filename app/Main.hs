@@ -6,7 +6,7 @@ import Data.Text(breakOn, splitOn)
 
 import System.Random(randomRIO)
 
-import Dotrandom.Banlist(bothBans, direBans, radiantBans)
+import Dotrandom.Banlist(tooBadHeroes, tooGoodHeroes)
 import Dotrandom.Hero(Hero)
 import Dotrandom.InternalName(toInternalName)
 import Dotrandom.Positions(Position(Pos1, Pos2, Pos3, Pos4, Pos5), positions)
@@ -28,7 +28,7 @@ main =
     let allHeroes      = Set.fromList ([minBound..maxBound] :: [Hero])
     let reservedHeroes = preHeroSet team
     let cpuPool        = Set.difference allHeroes reservedHeroes
-    let bothPool       = Set.difference cpuPool   bothBans
+    let bothPool       = Set.difference cpuPool   tooBadHeroes
 
     mainLoop bothPool team
 
@@ -46,11 +46,11 @@ mainLoop bothPool team =
 tryDrafting :: Set Hero -> PreTeam -> IO ()
 tryDrafting bothPool team =
   do
-    let direPool    = Set.difference bothPool direBans
+    let direPool    = bothPool
     direTeam       <- draft direPool emptyTeam
     let direHeroes  = heroSet direTeam
 
-    let radiantPool  = Set.difference bothPool    radiantBans
+    let radiantPool  = Set.difference bothPool    tooGoodHeroes
     let finalPool    = Set.difference radiantPool direHeroes
     radiantTeam     <- draft finalPool team
 

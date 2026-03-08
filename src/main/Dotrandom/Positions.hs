@@ -115,13 +115,12 @@ positions = (pos1, pos2, pos3, pos4, pos5)
         , ElderTitan
         , Enigma
         , Kunkka
-        , Largo
+        -- , Largo TODO: Bots don't seem to pick him yet
         , LegionCommander
         , Lycan
         , Magnus
         , Marci
         , Mars
-        , Necrophos
         , NightStalker
         , Omniknight
         , Pangolier
@@ -193,7 +192,7 @@ positions = (pos1, pos2, pos3, pos4, pos5)
         , Io
         , Jakiro
         , KeeperOfTheLight
-        , Largo
+        -- , Largo TODO: Bots don't seem to pick him yet
         , Lich
         , Lion
         , Mirana
