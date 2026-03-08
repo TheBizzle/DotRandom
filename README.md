@@ -4,11 +4,11 @@
 
 A tool for drafting semi-random Dota teams.  It is intended for use with [the Open Hyper AI bots](https://github.com/forest0xia/dota2bot-OpenHyperAI), where the output can be entered into the draft lists in the `general.lua` file.
 
-This tool has an internal banlist, whereby heroes with particularly good bots will not be drafted onto the Radiant team, and heroes with particularly bad bots will not be drafted onto *any* team.
+This tool has an internal banlist/hero categorization, whereby heroes with particularly good bots will not be drafted onto the Radiant team, and heroes with particularly bad bots will not be drafted onto *any* team.
 
 ## Why is it?
 
-Open Hyper AI claims to be able to play every hero (it can't—not well, at least) and gives you access to formulas to control what it drafts.  However, the author found that there were about 30-40 heroes that it was never drafting, and another 40+ that it *does* draft but *shouldn't* (because it's so bad at them).  It was also annoying to have it eagerly drafting player picks, or putting the overly powerful heroes on the human team.
+Open Hyper AI claims to be able to play every hero (it can't—not well, at least) and gives you access to formulas to control what it drafts.  However, this author found that there were about 30-40 heroes that it was never drafting, and another 40+ that it *does* draft but *shouldn't* (because it's so bad at them).  It was also annoying to have it pre-emptively drafting player picks, or putting the overly powerful heroes on the human player's team.
 
 ## How to use
 
