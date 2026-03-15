@@ -1,5 +1,5 @@
 {-# OPTIONS_GHC -fno-warn-missing-import-lists #-}
-module Dotrandom.HeroLists(badHeroes, goodHeroes, tooBadHeroes, tooGoodHeroes, unevaluateds) where
+module Dotrandom.HeroLists(badHeroes, goodHeroes, mediocreHeroes, tooBadHeroes, tooGoodHeroes, unevaluateds) where
 
 import qualified Data.Set as Set
 
@@ -13,10 +13,14 @@ tooGoodHeroes
       [ ArcWarden
       , DeathProphet
       , Kunkka
+      , Lich
+      , OutworldDestroyer
       , Razor
       , ShadowFiend
+      , SkywrathMage
       , Sniper
       , Terrorblade
+      , Tiny
       , Zeus
       ]
 
@@ -28,14 +32,15 @@ goodHeroes
       , Beastmaster
       , Brewmaster
       , Bristleback
+      , CentaurWarrunner
       , Earthshaker
       , EarthSpirit
       , Huskar
       , Jakiro
       , LegionCommander
-      , Lich
       , Lina
       , Lycan
+      , NagaSiren
       , Mars
       , Medusa
       , MonkeyKing
@@ -43,19 +48,42 @@ goodHeroes
       , OgreMagi
       , Pudge
       , Pugna
-      , SandKing
+      , QueenOfPain
       , ShadowDemon
-      , Silencer
-      , SkywrathMage
       , Slardar
       , Tidehunter
+      , Timbersaw
       , Venomancer
-      , Viper
       , VoidSpirit
       , Warlock
-      , Weaver
       , Windranger
       , WinterWyvern
+      ]
+
+-- They're bad and clueless.  But they have some redeeming moments.
+mediocreHeroes :: Set Hero
+mediocreHeroes
+  = Set.fromList $
+      [ Bane
+      , BountyHunter
+      , Bloodseeker
+      , Dawnbreaker
+      , EmberSpirit
+      , Invoker
+      , Kez
+      , Leshrac
+      , Lion
+      , Magnus
+      , Muerta
+      , Omniknight
+      , PhantomLancer
+      , Ringmaster
+      , SandKing
+      , Silencer
+      , Snapfire
+      , StormSpirit
+      , Viper
+      , Weaver
       ]
 
 -- The AI really doesn't get these guys, but it at least has some impact
@@ -66,30 +94,26 @@ badHeroes
       [ AncientApparition
       , AntiMage
       , Batrider
-      , Bloodseeker
-      , BountyHunter
       , Broodmother
       , ChaosKnight
       , DarkSeer
-      , Dawnbreaker
       , Dazzle
       , Disruptor
+      , Doom
       , DragonKnight
+      , DrowRanger
       , Hoodwink
       , Juggernaut
-      , Kez
-      , Lion
       , Luna
       , Meepo
       , Mirana
-      , Muerta
       , NaturesProphet
+      , NightStalker
       , Phoenix
-      , PrimalBeast
-      , Omniknight
-      , Ringmaster
+      , PrimalBeast -- Mediocre in a good game.  In a bad game, sits in base the whole game, randomly gyrating in the direction of the fountain
       , ShadowShaman
-      , Snapfire
+      , Techies
+      , Tinker
       , Tusk
       , Ursa -- Standard game: Feeds for 40-50 minutes, then has enough items that he can't help but start contributing.
       , WitchDoctor
@@ -101,6 +125,8 @@ tooBadHeroes :: Set Hero
 tooBadHeroes
   = Set.fromList $
       [ Abaddon
+      , Alchemist -- Finishes his Radiance at 33 minutes; finishes the match with barely more net worth (and less hero damage done) than the pos 5
+      , Chen
       , Clinkz
       , Clockwerk
       , CrystalMaiden
@@ -121,6 +147,7 @@ tooBadHeroes
       , Oracle
       , Pangolier
       , PhantomAssassin
+      , Puck
       , Riki
       , Rubick
       , Slark
@@ -131,47 +158,14 @@ tooBadHeroes
       , TreantProtector
       , TrollWarlord
       , Underlord
+      , Undying
       , VengefulSpirit
       , Visage
       , WraithKing
       ]
 
-historicBads :: Set Hero
-historicBads
-  = Set.fromList $
-      [ Doom
-      , Invoker
-      , Magnus
-      , NagaSiren
-      , PhantomLancer
-      , Puck
-      ]
-
 unevaluateds :: Set Hero
 unevaluateds
   = Set.fromList $
-      [ Alchemist
-      , Bane
-      , Magnus
-      , NightStalker
-      , PhantomLancer
-      , Puck
-      , Undying
-
-      , CentaurWarrunner
-      , Chen
-      , Doom
-      , DrowRanger
-      , EmberSpirit
-      , Invoker
-      , Largo
-      , Leshrac
-      , NagaSiren
-      , OutworldDestroyer
-      , QueenOfPain
-      , StormSpirit
-      , Techies
-      , Timbersaw
-      , Tinker
-      , Tiny
+      [ Largo
       ]

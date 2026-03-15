@@ -38,7 +38,7 @@ positions = (pos1, pos2, pos3, pos4, pos5)
         , Morphling
         , Muerta
         , NagaSiren
-        , NaturesProphet
+        --, NaturesProphet | Bad performance
         , PhantomAssassin
         , PhantomLancer
         , Riki
@@ -79,7 +79,7 @@ positions = (pos1, pos2, pos3, pos4, pos5)
         , OutworldDestroyer
         , Pangolier
         , Puck
-        , Pudge
+        -- , Pudge | Worthless as support
         , QueenOfPain
         , Riki
         , SandKing
@@ -121,6 +121,7 @@ positions = (pos1, pos2, pos3, pos4, pos5)
         , Magnus
         , Marci
         , Mars
+        --, Necrophos | Bad performance
         , NightStalker
         , Omniknight
         , Pangolier
@@ -145,7 +146,7 @@ positions = (pos1, pos2, pos3, pos4, pos5)
         , BountyHunter
         , Clockwerk
         , DarkWillow
-        , EarthSpirit
+        --, EarthSpirit | Bad performance
         , Earthshaker
         , ElderTitan
         , Grimstroke
@@ -199,7 +200,7 @@ positions = (pos1, pos2, pos3, pos4, pos5)
         , OgreMagi
         , Oracle
         , Phoenix
-        , Pudge
+        -- , Pudge | Worthless as support
         , Pugna
         , Ringmaster
         , Rubick

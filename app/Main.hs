@@ -6,7 +6,7 @@ import Data.Text(breakOn, splitOn)
 import System.Random(randomRIO)
 
 import Dotrandom.Hero(Hero)
-import Dotrandom.HeroLists(badHeroes, goodHeroes, tooBadHeroes, tooGoodHeroes, unevaluateds)
+import Dotrandom.HeroLists(badHeroes, goodHeroes, mediocreHeroes, tooBadHeroes, tooGoodHeroes, unevaluateds)
 import Dotrandom.InternalName(toInternalName)
 import Dotrandom.Positions(Position(Pos1, Pos2, Pos3, Pos4, Pos5), positions)
 import Dotrandom.Team(emptyTeam, heroSet, preHeroSet, PreTeam(pos1M, pos2M, pos3M, pos4M, pos5M, PreTeam), Team(Team))
@@ -28,12 +28,13 @@ main =
     let allHeroes      = [minBound..maxBound] :: [Hero]
     let fullPool       = Map.fromList $ map (, 1) allHeroes
     let reservedHeroes = preHeroSet team
-    let weightedPool   = weightPool fullPool [ (     badHeroes, 25)
+    let weightedPool   = weightPool fullPool [ (     badHeroes, 20)
+                                             , (mediocreHeroes, 30)
                                              , (    goodHeroes, 10)
                                              , (reservedHeroes,  0)
                                              , (  tooBadHeroes,  0)
                                              , ( tooGoodHeroes,  0)
-                                             , (  unevaluateds, 80)
+                                             , (  unevaluateds, 99)
                                              ]
 
     mainLoop weightedPool team
@@ -56,12 +57,13 @@ tryDrafting weightedPool team =
     direTeam       <- draft direPool emptyTeam
     let direHeroes  = heroSet direTeam
 
-    let finalPool = weightPool weightedPool [ (    badHeroes, 15)
-                                            , (   goodHeroes, 20)
-                                            , ( tooBadHeroes,  0)
-                                            , (tooGoodHeroes, 20)
-                                            , (   direHeroes,  0)
-                                            , ( unevaluateds, 80)
+    let finalPool = weightPool weightedPool [ (     badHeroes, 10)
+                                            , (mediocreHeroes, 15)
+                                            , (    goodHeroes, 20)
+                                            , (  tooBadHeroes,  0)
+                                            , ( tooGoodHeroes, 20)
+                                            , (    direHeroes,  0)
+                                            , (  unevaluateds, 99)
                                             ]
 
     radiantTeam <- draft finalPool team
