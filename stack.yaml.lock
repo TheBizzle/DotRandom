@@ -5,15 +5,15 @@
 
 packages:
 - completed:
-    hackage: bizzlelude-4.20.2.0.1@sha256:5e84ac443f41030c918c5cf1ddf1c3c3acdc9c385aaf10ed908022d3c118ca01,7378
+    hackage: bizzlelude-4.20.2.0.4@sha256:c751fd82136a0ca7cb187ec63d40fa22d937bc67df38ec0412037d548067aa60,7395
     pantry-tree:
-      sha256: ac601e92c3212f9e45573f9eb30bbe9b6df302b99c2f957b526520496c640d07
+      sha256: 854736438f01dcfe6041e9807174014982dc8b79b72a247b9495379f63add39f
       size: 533
   original:
-    hackage: bizzlelude-4.20.2.0.1@sha256:5e84ac443f41030c918c5cf1ddf1c3c3acdc9c385aaf10ed908022d3c118ca01,7378
+    hackage: bizzlelude-4.20.2.0.4@sha256:c751fd82136a0ca7cb187ec63d40fa22d937bc67df38ec0412037d548067aa60,7395
 snapshots:
 - completed:
-    sha256: 92becf9417de918f477cc79583b70700cbead6c5028fc4c4415f04fab5fb5354
-    size: 726332
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/24/20.yaml
-  original: lts-24.20
+    sha256: d90eb1418667a225998b173817300e5ae2e1500ed03c0a9457cc2a0e78a0122a
+    size: 726337
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/24/26.yaml
+  original: lts-24.26
