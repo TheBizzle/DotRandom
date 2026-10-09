@@ -6,6 +6,7 @@
 
 /.ghci
 /.projections.json
-
 /.stack-work/
+
+/dotrandom.cabal
 /target/
